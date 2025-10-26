@@ -1,103 +1,102 @@
 {
-  "name": "cursor-infinity",
-  "displayName": "cursor-infinity",
-  "description": "一键无感换号，稳定使用中",
-  "version": "6.0.5",
-  "publisher": "menglong",
-  "author_id": "menglong",
-  "icon": "resources/icon.png",
-  "engines": {
-    "vscode": "^1.93.1"
-  },
-  "categories": [
-    "Other"
-  ],
-  "extensionKind": [
-    "ui",
-    "workspace"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "configuration": {
-      "title": "Cursor Infinity",
-      "properties": {
-        "cursor-infinity.autoOpenPanel": {
-          "type": "boolean",
-          "default": true,
-          "description": "启动时自动激活界面"
-        }
-      }
+    "name": "cursor-infinity",
+    "displayName": "cursor-infinity",
+    "description": "一键无感换号，稳定使用中",
+    "version": "6.0.9",
+    "publisher": "menglong",
+    "author_id": "menglong",
+    "icon": "resources\/icon.png",
+    "engines": {
+        "vscode": "^1.93.1"
     },
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "cursor-infinity-sidebar",
-          "title": "cursor-infinity",
-          "icon": "resources/icon.svg"
-        }
-      ]
+    "categories": [
+        "Other"
+    ],
+    "extensionKind": [
+        "ui"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": ".\/dist\/extension.js",
+    "contributes": {
+        "configuration": {
+            "title": "Cursor Infinity",
+            "properties": {
+                "cursor-infinity.autoOpenPanel": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "启动时自动激活界面"
+                }
+            }
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "cursor-infinity-sidebar",
+                    "title": "cursor-infinity",
+                    "icon": "resources\/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "cursor-infinity-sidebar": [
+                {
+                    "id": "cursor-infinity-activation",
+                    "name": "功能界面（6.0.9）",
+                    "type": "webview"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "cursor-infinity.inputCDK",
+                "title": "输入 CDK"
+            },
+            {
+                "command": "cursor-infinity.activate",
+                "title": "激活软件"
+            },
+            {
+                "command": "cursor-infinity.openPanel",
+                "title": "打开 cursor Infinity 插件面板"
+            }
+        ]
     },
-    "views": {
-      "cursor-infinity-sidebar": [
-        {
-          "id": "cursor-infinity-activation",
-          "name": "功能界面",
-          "type": "webview"
-        }
-      ]
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "npm run check-types && npm run lint && node esbuild.js",
+        "watch": "node esbuild.js --watch",
+        "watch:full": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "package": "npm run check-types && npm run lint && node esbuild.js --production",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "check-types": "tsc --noEmit",
+        "lint": "eslint src",
+        "test": "vscode-test",
+        "vsce:package": "vsce package"
     },
-    "commands": [
-      {
-        "command": "cursor-infinity.inputCDK",
-        "title": "输入 CDK"
-      },
-      {
-        "command": "cursor-infinity.activate",
-        "title": "激活软件"
-      },
-      {
-        "command": "cursor-infinity.openPanel",
-        "title": "打开 cursor Infinity 插件面板"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "npm run check-types && npm run lint && node esbuild.js",
-    "watch": "node esbuild.js --watch",
-    "watch:full": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "npm run check-types && npm run lint && node esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test",
-    "vsce:package": "vsce package"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.93.1",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
-    "@vscode/vsce": "^2.24.0",
-    "esbuild": "^0.25.1",
-    "eslint": "^9.23.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "antd": "^5.24.6",
-    "node-machine-id": "^1.1.12",
-    "sql.js": "^1.13.0",
-    "uuid": "^11.1.0"
-  }
+    "devDependencies": {
+        "@types\/mocha": "^10.0.10",
+        "@types\/node": "20.x",
+        "@types\/vscode": "^1.93.1",
+        "@typescript-eslint\/eslint-plugin": "^8.28.0",
+        "@typescript-eslint\/parser": "^8.28.0",
+        "@vscode\/test-cli": "^0.0.10",
+        "@vscode\/test-electron": "^2.4.1",
+        "@vscode\/vsce": "^2.24.0",
+        "esbuild": "^0.25.1",
+        "eslint": "^9.23.0",
+        "npm-run-all": "^4.1.5",
+        "tar": "^7.5.1",
+        "typescript": "^5.8.2"
+    },
+    "dependencies": {
+        "axios": "^1.7.9",
+        "node-machine-id": "^1.1.12",
+        "uuid": "^11.1.0"
+    }
 }
